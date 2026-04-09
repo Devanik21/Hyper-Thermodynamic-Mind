@@ -19,7 +19,7 @@
 
 > *Genesis-IV: A K=64 Hilbert-space AGI architecture. Features Zero-Entropy state-space preservation via LZMA-compressed quantum tensors; Schrödinger-driven HRC with Landauer metabolic cost; and self-modifying meta-Hamiltonians.*
 
-**Author:** Devanik Debnath · NIT Agartala · 2025–2026
+**Author:** Devanik Debnath · NIT Agartala · 2026
 
 </div>
 
@@ -924,6 +924,6 @@ The dual-band task/meta architecture is inspired by **Meta FAIR HyperAgents** (a
 
 *Metacognitive Self-Modification · Stigmergy · Pheromones · Gödel-Encoded Inventions · Zero LLM*
 
-**Devanik Debnath** · NIT Agartala · Apache-2.0 · 2025–2026
+**Devanik Debnath** · NIT Agartala · Apache-2.0 · 2026
 
 </div>
