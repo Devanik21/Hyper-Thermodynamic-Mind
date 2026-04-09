@@ -2,6 +2,8 @@
 
 # ⬡ GeNeSIS IV — HyPER AgEnT
 
+
+
 ### *Spectral Life Simulator · Metacognitive Self-Modification · Zero LLM*
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
@@ -18,6 +20,8 @@
 [![Release](https://img.shields.io/badge/Release-Frozen_States-98FB98?style=flat-square)](https://github.com/Devanik21/Hyper-Thermodynamic-Mind/releases)
 
 > *Genesis-IV: A K=64 Hilbert-space AGI architecture. Features Zero-Entropy state-space preservation via LZMA-compressed quantum tensors; Schrödinger-driven HRC with Landauer metabolic cost; and self-modifying meta-Hamiltonians.*
+
+![3d-rendering-futuristic-sci-fi-techno-lights-creating-cool-shapes-cool-background](https://github.com/user-attachments/assets/47a0147f-0129-447b-9be6-8af134a508a1)
 
 **Author:** Devanik Debnath · NIT Agartala · 2026
 
