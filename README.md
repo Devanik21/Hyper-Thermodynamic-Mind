@@ -4,15 +4,22 @@
 
 ### *Spectral Life Simulator · Metacognitive Self-Modification · Zero LLM*
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat-square&logo=python)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.35%2B-FF4B4B?style=flat-square&logo=streamlit)](https://streamlit.io/)
-[![NumPy](https://img.shields.io/badge/NumPy-Hilbert_Space-013243?style=flat-square&logo=numpy)](https://numpy.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-Physics_Oracle-EE4C2C?style=flat-square&logo=pytorch)](https://pytorch.org/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.35%2B-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![NumPy](https://img.shields.io/badge/NumPy-1.26%2B-013243?style=flat-square&logo=numpy)](https://numpy.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.2%2B-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue?style=flat-square)](LICENSE)
+[![Hilbert Space](https://img.shields.io/badge/Hilbert_Space-K%3D64-7DF9FF?style=flat-square)](#31-hilbert-space-substrate)
+[![IIT](https://img.shields.io/badge/Consciousness-IIT_%CE%A6-DDA0DD?style=flat-square)](#37-iit-integrated-information-φ)
+[![Gödel](https://img.shields.io/badge/Programs-G%C3%B6del_Encoded-FFD700?style=flat-square)](#311-gödel-encoding-of-behavioural-programs)
+[![Kuramoto](https://img.shields.io/badge/Phase_Sync-Kuramoto-00FF88?style=flat-square)](#313-kuramoto-phase-synchronisation)
+[![Zero LLM](https://img.shields.io/badge/LLM_Dependency-Zero-FF4455?style=flat-square)](#)
+[![Agents](https://img.shields.io/badge/Max_Population-128-FF8C00?style=flat-square)](#46-evolutionpy--population-lifecycle-engine)
+[![Release](https://img.shields.io/badge/Release-Frozen_States-98FB98?style=flat-square)](https://github.com/Devanik21/Hyper-Thermodynamic-Mind/releases)
 
-> **"Every invention is a Gödel number. Every life is a wave function. Every civilisation is a shared Hamiltonian."**
+> *Genesis-IV: A K=64 Hilbert-space AGI architecture. Features Zero-Entropy state-space preservation via LZMA-compressed quantum tensors; Schrödinger-driven HRC with Landauer metabolic cost; and self-modifying meta-Hamiltonians.*
 
-*Invented by Devanik Debnath & Claude (Xylia) — Event Horizon Project · 2025–2026*
+**Author:** Devanik Debnath · NIT Agartala · 2025–2026
 
 </div>
 
@@ -61,7 +68,7 @@
 
 ## 1. Vision & Overview
 
-GeNeSIS IV (Generative Neural Emergent Simulation IV) is a **pure-mathematics artificial life system** that simulates the emergence of cognition, culture, and civilisation from first principles — with zero LLMs, zero scripted behaviour, and zero hand-crafted rules beyond physics.
+GeNeSIS IV (Generative Neural Emergent Simulation IV) is a **computational framework for studying the emergence of cognition, culture, and civilisation from first-principles quantum-mechanical dynamics** — without large language models, scripted behaviour, or hand-crafted reward functions.
 
 Each agent carries a **64-dimensional complex wave function** $\psi \in \mathbb{C}^{64}$ as its cognitive state, governed by a personal **Hermitian Hamiltonian** $H \in \mathbb{C}^{64 \times 64}$ that encodes its learned world model. Decisions emerge from quantum measurement (Born-rule collapse). Learning is Riemannian gradient descent on the unitary manifold $U(64)$. Inventions are **Gödel numbers** — unique integers encoding behavioural programs from a 16-primitive action algebra.
 
@@ -316,7 +323,9 @@ This implements Karl Friston's free energy principle: the agent perpetually trie
 
 **Qualia recording** stores the amplitude profile of significant experiences:
 
-$$\mathcal{Q}[k] = |\psi| \quad \text{when} \quad |r| > 0.5, \quad k = \text{mode\_string}$$
+$$\mathcal{Q}[k] = |\psi|, \quad \text{when} \quad |r| > 0.5, \quad k \in \mathcal{K}_{\text{exp}}$$
+
+where $\mathcal{K}_{\text{exp}}$ is the set of experience-mode keys of the form `"mode_±"` (e.g., `"explore_1"`, `"survive_0"`).
 
 Qualia classification uses cosine similarity between the current state and stored patterns:
 
@@ -363,9 +372,9 @@ $$\text{div}(\pi) = \frac{|\{c(\pi_k) : k = 1,\ldots,L\}|}{4} \in \{0.25, 0.5, 0
 
 **Eigenmode-to-program conversion:** an invention emerges by perturbing the least-explored eigenmode of $H$ and reading its phase structure:
 
-$$p_{i_k} = \text{ALL\_PRIMITIVES}\left[\left\lfloor \frac{\varphi_k + \pi}{2\pi} \cdot 16 \right\rfloor\right], \quad \varphi_k = \arg(V_{k,\, \text{dark}})$$
+$$p_{i_k} = \Pi_{\text{all}}\!\left[\left\lfloor \frac{\varphi_k + \pi}{2\pi} \cdot 16 \right\rfloor\right], \quad \varphi_k = \arg(V_{k,\, \text{dark}})$$
 
-where $\text{dark} = \arg\min_j |\langle v_j \mid \psi \rangle|^2$ is the least-occupied eigenmode. The perturbation to $H$ is:
+where $\Pi_{\text{all}}$ denotes the ordered flat list of 16 primitives (the `ALL_PRIMITIVES` array) and The perturbation to $H$ is:
 
 $$H \leftarrow H + \frac{\varepsilon_{\text{WONDER}}}{5} \cdot \frac{|v_{\text{dark}}\rangle\langle v_{\text{dark}}| + \text{h.c.}}{2}$$
 
@@ -911,10 +920,10 @@ The dual-band task/meta architecture is inspired by **Meta FAIR HyperAgents** (a
 
 <div align="center">
 
-**HyPER AgEnT v3.0 · K_DIM=64 · 96 Agents · 30 GeNeSIS Features**
+**HyPER AgEnT v3.0 · K\_DIM=64 · 128 Agents Max · 30 GeNeSIS Features**
 
 *Metacognitive Self-Modification · Stigmergy · Pheromones · Gödel-Encoded Inventions · Zero LLM*
 
-*Invented by Devanik & Claude (Xylia) · 2025–2026*
+**Devanik Debnath** · NIT Agartala · Apache-2.0 · 2025–2026
 
 </div>
