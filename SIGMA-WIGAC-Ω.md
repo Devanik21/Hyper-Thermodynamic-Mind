@@ -70,67 +70,67 @@ This modularity is not decorative. It reflects a genuine belief, grounded in the
 
 ### The Extended Polish Path Space
 
-Let $(\mathcal{X}, \mathfrak{B}(\mathcal{X}), d_{\mathcal{X}})$ be a Polish state space — that is, a complete separable metric space — and let $\mathcal{A}$ be a compact Lie group of actions. The **horizon-free path space** is defined as the countably infinite disjoint union:
+Let $(\mathcal{X}, \mathfrak{B}(\mathcal{X}), d\_{\mathcal{X}})$ be a Polish state space — that is, a complete separable metric space — and let $\mathcal{A}$ be a compact Lie group of actions. The **horizon-free path space** is defined as the countably infinite disjoint union:
 
 $$
-\Omega = \bigsqcup_{t=0}^{\infty} \Omega_t, \qquad \Omega_t = (\mathcal{X} \times \mathcal{A})^{t} \times \mathcal{X}
+\Omega = \bigsqcup\_{t=0}^{\infty} \Omega\_t, \qquad \Omega\_t = (\mathcal{X} \times \mathcal{A})^{t} \times \mathcal{X}
 $$
 
 This construction allows trajectories of arbitrary length to be treated as elements of a single Polish space, without fixing a horizon. The space $\Omega$ is equipped with the **exponentially weighted truncated metric**:
 
 $$
-d_{\Omega}(\omega, \omega') = \sum_{t=0}^{\infty} 2^{-t} \frac{d_{\mathcal{X}}(x_t, x'_t) + d_{\mathcal{A}}(a_t, a'_t)}{1 + d_{\mathcal{X}}(x_t, x'_t) + d_{\mathcal{A}}(a_t, a'_t)} \mathbf{1}_{\{t \leq \max(|\omega|, |\omega'|)\}}
+d\_{\Omega}(\omega, \omega') = \sum\_{t=0}^{\infty} 2^{-t} \frac{d\_{\mathcal{X}}(x\_t, x'\_t) + d\_{\mathcal{A}}(a\_t, a'\_t)}{1 + d\_{\mathcal{X}}(x\_t, x'\_t) + d\_{\mathcal{A}}(a\_t, a'\_t)} \mathbf{1}\_{\{t \leq \max(|\omega|, |\omega'|)\}}
 $$
 
-The geometric decay $2^{-t}$ ensures completeness: longer trajectories contribute exponentially less to distance, while the Fréchet normalization maintains the metric property. Under this metric, $(\Omega, d_{\Omega})$ is a complete separable metric space, and we may define the Wasserstein-type space:
+The geometric decay $2^{-t}$ ensures completeness: longer trajectories contribute exponentially less to distance, while the Fréchet normalization maintains the metric property. Under this metric, $(\Omega, d\_{\Omega})$ is a complete separable metric space, and we may define the Wasserstein-type space:
 
 $$
-\mathcal{P}_2(\Omega) = \left\{ \mathbb{P} \in \mathcal{P}(\Omega) : \int_{\Omega} d_{\Omega}^2(\omega, \omega_0) \, d\mathbb{P}(\omega) < \infty \right\}
+\mathcal{P}\_2(\Omega) = \left\{ \mathbb{P} \in \mathcal{P}(\Omega) : \int\_{\Omega} d\_{\Omega}^2(\omega, \omega\_0) \, d\mathbb{P}(\omega) < \infty \right\}
 $$
 
-The entire learning problem is lifted to the optimization of probability measures $\mathbb{P} \in \mathcal{P}_2(\Omega)$, treating the trajectory distribution itself — rather than any individual policy — as the primary object of study.
+The entire learning problem is lifted to the optimization of probability measures $\mathbb{P} \in \mathcal{P}\_2(\Omega)$, treating the trajectory distribution itself — rather than any individual policy — as the primary object of study.
 
 ### The Chen-Fliess Signature Transform
 
-For a trajectory $\omega_{:t} = (x_0, a_0, \ldots, x_t)$, we construct the **augmented path** $\bar{\omega}: [0,1] \to \mathbb{R}^{d+1}$ by linearly interpolating the sequence $(t, x_t, a_t)$. The **Chen-Fliess signature** of this path is the collection of all iterated integrals:
+For a trajectory $\omega\_{:t} = (x\_0, a\_0, \ldots, x\_t)$, we construct the **augmented path** $\bar{\omega}: [0,1] \to \mathbb{R}^{d+1}$ by linearly interpolating the sequence $(t, x\_t, a\_t)$. The **Chen-Fliess signature** of this path is the collection of all iterated integrals:
 
 $$
-S(\omega_{:t}) = \left(1, \int_{0<u_1<1} d\bar{\omega}_{u_1},\ \int_{0<u_1<u_2<1} d\bar{\omega}_{u_1} \otimes d\bar{\omega}_{u_2},\ \ldots \right) \in \mathcal{T}((\mathbb{R}^{d+1}))
+S(\omega\_{:t}) = \left(1, \int\_{0<u\_1<1} d\bar{\omega}\_{u\_1},\ \int\_{0<u\_1<u\_2<1} d\bar{\omega}\_{u\_1} \otimes d\bar{\omega}\_{u\_2},\ \ldots \right) \in \mathcal{T}((\mathbb{R}^{d+1}))
 $$
 
-where $\mathcal{T}((V)) = \prod_{k=0}^{\infty} V^{\otimes k}$ denotes the completed tensor algebra over $V = \mathbb{R}^{d+1}$. The truncated signature $S_N(\omega) = \mathrm{proj}_{\leq N} S(\omega)$ provides a **universal feature map for paths modulo tree-like equivalence**, by the Hambly-Lyons uniqueness theorem: two paths with the same signature are indistinguishable as controlled systems.
+where $\mathcal{T}((V)) = \prod\_{k=0}^{\infty} V^{\otimes k}$ denotes the completed tensor algebra over $V = \mathbb{R}^{d+1}$. The truncated signature $S\_N(\omega) = \mathrm{proj}\_{\leq N} S(\omega)$ provides a **universal feature map for paths modulo tree-like equivalence**, by the Hambly-Lyons uniqueness theorem: two paths with the same signature are indistinguishable as controlled systems.
 
 **Adaptive Signature Depth.** Rather than fixing a truncation level $N$ globally, SIGMA-WIGAC-Ω allocates signature depth based on the local dynamical complexity of each trajectory. The **local Lyapunov exponent** is estimated as:
 
 $$
-\lambda(\omega_{:t}) = \limsup_{k \to t} \frac{1}{k} \log \left\| \nabla_{x_0} x_k \right\|
+\lambda(\omega\_{:t}) = \limsup\_{k \to t} \frac{1}{k} \log \left\| \nabla\_{x\_0} x\_k \right\|
 $$
 
 The optimal truncation depth is then set adaptively:
 
 $$
-N^{\ast}(\omega_{:t}) = \left\lceil \frac{\lambda_{\max} - \lambda(\omega_{:t})}{\lambda_{\max} - \lambda_{\min}} \cdot N_{\max} \right\rceil
+N^{\ast}(\omega\_{:t}) = \left\lceil \frac{\lambda\_{\max} - \lambda(\omega\_{:t})}{\lambda\_{\max} - \lambda\_{\min}} \cdot N\_{\max} \right\rceil
 $$
 
 This allocates higher tensor degrees to chaotic trajectory segments where the full nonlinear memory of the path is necessary for accurate value estimation, while compressing regular segments for computational efficiency.
 
 ### The Wasserstein-Fisher-Rao Geometry
 
-The classical Wasserstein distance on $\mathcal{P}_2(\Omega)$ conserves total probability mass, making it unsuitable for reinforcement learning, where exploration-exploitation trade-offs require the **creation and destruction of probability mass** — the birth of new policy modes and the death of suboptimal ones.
+The classical Wasserstein distance on $\mathcal{P}\_2(\Omega)$ conserves total probability mass, making it unsuitable for reinforcement learning, where exploration-exploitation trade-offs require the **creation and destruction of probability mass** — the birth of new policy modes and the death of suboptimal ones.
 
 The **Wasserstein-Fisher-Rao (WFR) metric** resolves this by allowing unbalanced transport:
 
 $$
-\mathcal{W}_{\text{FR}}^2(\mu, \nu) = \inf_{\rho_t, v_t, r_t} \int_0^1 \left[ \int_{\Omega} \left|v_t(\omega)\right|^2 + 4\left|\nabla_{\omega} \sqrt{r_t(\omega)}\right|^2 \right] d\rho_t(\omega) \, dt
+\mathcal{W}\_{\text{FR}}^2(\mu, \nu) = \inf\_{\rho\_t, v\_t, r\_t} \int\_0^1 \left[ \int\_{\Omega} \left|v\_t(\omega)\right|^2 + 4\left|\nabla\_{\omega} \sqrt{r\_t(\omega)}\right|^2 \right] d\rho\_t(\omega) \, dt
 $$
 
 subject to the **continuity equation with source**:
 
 $$
-\partial_t \rho_t + \nabla \cdot (\rho_t v_t) = \rho_t(r_t - 1), \qquad \rho_0 = \mu, \quad \rho_1 = \nu
+\partial\_t \rho\_t + \nabla \cdot (\rho\_t v\_t) = \rho\_t(r\_t - 1), \qquad \rho\_0 = \mu, \quad \rho\_1 = \nu
 $$
 
-The vector field $v_t$ encodes transport (policy improvement), while the scalar field $r_t$ encodes mass creation and destruction (exploration dynamics). Together, they define a Riemannian metric on $\mathcal{P}_2(\Omega)$ that strictly generalizes the Otto-Wasserstein structure.
+The vector field $v\_t$ encodes transport (policy improvement), while the scalar field $r\_t$ encodes mass creation and destruction (exploration dynamics). Together, they define a Riemannian metric on $\mathcal{P}\_2(\Omega)$ that strictly generalizes the Otto-Wasserstein structure.
 
 The **geometric advantage function** incorporates the WFR functional derivative as a transport regularizer:
 
@@ -142,18 +142,18 @@ The WFR gradient is computed by solving the coupled continuity system with a Lag
 
 ### Information Geometry of Policy Manifolds
 
-Let $\mathcal{M} = \{\pi_{\theta} : \theta \in \Theta \subseteq \mathbb{R}^d\}$ be a parametric family of policies. Each $\pi\_\theta$ induces a path measure $\mathbb{P}^{\pi\_\theta} \in \mathcal{P}\_2(\Omega)$, and the mapping $\theta \mapsto \mathbb{P}^{\pi\_\theta}$ is a smooth immersion of $\Theta$ into the infinite-dimensional manifold $\mathcal{P}\_2(\Omega)$.
+Let $\mathcal{M} = \{\pi\_{\theta} : \theta \in \Theta \subseteq \mathbb{R}^d\}$ be a parametric family of policies. Each $\pi\_\theta$ induces a path measure $\mathbb{P}^{\pi\_\theta} \in \mathcal{P}\_2(\Omega)$, and the mapping $\theta \mapsto \mathbb{P}^{\pi\_\theta}$ is a smooth immersion of $\Theta$ into the infinite-dimensional manifold $\mathcal{P}\_2(\Omega)$.
 
 The **Fisher-Rao metric tensor** on $\mathcal{M}$ is:
 
 $$
-G_{ij}(\theta) = \mathbb{E}_{\omega \sim \mathbb{P}^{\pi_{\theta}}} \left[ \sum_{t=0}^{|\omega|} \partial_i \log \pi_{\theta}(a_t|x_t) \cdot \partial_j \log \pi_{\theta}(a_t|x_t) \right]
+G\_{ij}(\theta) = \mathbb{E}\_{\omega \sim \mathbb{P}^{\pi\_{\theta}}} \left[ \sum\_{t=0}^{|\omega|} \partial\_i \log \pi\_{\theta}(a\_t|x\_t) \cdot \partial\_j \log \pi\_{\theta}(a\_t|x\_t) \right]
 $$
 
 This Riemannian metric measures the information content of a parameter update: the length of a curve $\theta(t)$ in $\mathcal{M}$ represents the total amount of statistical information updated along the training trajectory. The corresponding **natural gradient**:
 
 $$
-\dot{\theta} = -G(\theta)^{-1} \nabla_{\theta} \mathcal{J}(\theta)
+\dot{\theta} = -G(\theta)^{-1} \nabla\_{\theta} \mathcal{J}(\theta)
 $$
 
 is the steepest descent direction with respect to this intrinsic metric rather than the extrinsic Euclidean metric of parameter space — a distinction of profound practical consequence.
@@ -171,59 +171,59 @@ The foundational layer establishes the complete mathematical scaffolding: the ex
 The **path-dependent Q-function** lives in the reproducing kernel Hilbert space induced by the signature kernel:
 
 $$
-\mathcal{K}_N(\omega, \omega') = \langle S_N(\omega), S_N(\omega') \rangle_{\mathcal{T}_N} = \sum_{k=0}^{N} \langle S_k(\omega), S_k(\omega') \rangle
+\mathcal{K}\_N(\omega, \omega') = \langle S\_N(\omega), S\_N(\omega') \rangle\_{\mathcal{T}\_N} = \sum\_{k=0}^{N} \langle S\_k(\omega), S\_k(\omega') \rangle
 $$
 
-and is defined as $Q_\psi(\omega_{:t}, a) = \langle \phi(\omega_{:t}, a), \psi \rangle_{\mathcal{H}}$, where $\phi(\omega_{:t}, a) = S_{N^\ast(\omega_{:t})}(\omega_{:t}) \otimes \mathbf{e}_a$. This critic is **non-Markovian by construction**: it reads the entire history of the trajectory, not merely the current state.
+and is defined as $Q\_\psi(\omega\_{:t}, a) = \langle \phi(\omega\_{:t}, a), \psi \rangle\_{\mathcal{H}}$, where $\phi(\omega\_{:t}, a) = S\_{N^\ast(\omega\_{:t})}(\omega\_{:t}) \otimes \mathbf{e}\_a$. This critic is **non-Markovian by construction**: it reads the entire history of the trajectory, not merely the current state.
 
 The **path-dependent Bellman equation** is:
 
 $$
-Q_{\psi}(\omega_{:t}, a) = r(x_t, a) + \gamma \, \sigma_{\lambda}\left[ \mathbb{E}_{x' \sim P(\cdot|x_t,a)}\left[Q_{\psi}(\omega_{:t} \oplus (x', \cdot), \cdot)\right] \right]
+Q\_{\psi}(\omega\_{:t}, a) = r(x\_t, a) + \gamma \, \sigma\_{\lambda}\left[ \mathbb{E}\_{x' \sim P(\cdot|x\_t,a)}\left[Q\_{\psi}(\omega\_{:t} \oplus (x', \cdot), \cdot)\right] \right]
 $$
 
-where $\sigma_\lambda[f](a) = \lambda \log \sum_{a'} \exp(f(a')/\lambda)$ is the soft-Bellman operator, and $\omega_{:t} \oplus (x', \cdot)$ denotes path extension.
+where $\sigma\_\lambda[f](a) = \lambda \log \sum\_{a'} \exp(f(a')/\lambda)$ is the soft-Bellman operator, and $\omega\_{:t} \oplus (x', \cdot)$ denotes path extension.
 
 The **mean-field master equation** governs the value function $U(t, \mu)$ in the multi-agent regime:
 
 $$
-\partial_t U(t, \mu) + \int_{\mathcal{X}} \nabla_x \partial_{\mu} U(t, \mu, x) \cdot b(x, \mu, \pi^{\ast}) \, d\mu(x) + \frac{1}{2} \mathrm{Tr}\!\left(\sigma \sigma^T \partial_{xx} \partial_{\mu} U\right) = 0
+\partial\_t U(t, \mu) + \int\_{\mathcal{X}} \nabla\_x \partial\_{\mu} U(t, \mu, x) \cdot b(x, \mu, \pi^{\ast}) \, d\mu(x) + \frac{1}{2} \mathrm{Tr}\!\left(\sigma \sigma^T \partial\_{xx} \partial\_{\mu} U\right) = 0
 $$
 
 Population dynamics evolve according to the Fokker-Planck equation:
 
 $$
-\partial_t \mu + \nabla \cdot (b \mu) = \frac{1}{2} \mathrm{Tr}(\sigma \sigma^T \partial_{xx} \mu)
+\partial\_t \mu + \nabla \cdot (b \mu) = \frac{1}{2} \mathrm{Tr}(\sigma \sigma^T \partial\_{xx} \mu)
 $$
 
 ### Arithmetic and Modular Layer
 
 This layer enriches the policy gradient with the arithmetic geometry of number theory, activated when the environment carries discrete combinatorial or modular structure.
 
-**p-adic Hodge theory** defines policy gradients over the p-adic numbers $\mathbb{Q}_p$, equipping the gradient computation with perfectoid smoothing — a technique from arithmetic geometry that resolves the wild ramification present in ultra-metric state trees:
+**p-adic Hodge theory** defines policy gradients over the p-adic numbers $\mathbb{Q}\_p$, equipping the gradient computation with perfectoid smoothing — a technique from arithmetic geometry that resolves the wild ramification present in ultra-metric state trees:
 
 $$
-\nabla_{\theta}^{\text{p-adic}}: \mathcal{O}_{\mathcal{M}_{\mathbb{Q}_p}} \to \Omega^1_{\mathcal{M}/\mathbb{Q}_p}
+\nabla\_{\theta}^{\text{p-adic}}: \mathcal{O}\_{\mathcal{M}\_{\mathbb{Q}\_p}} \to \Omega^1\_{\mathcal{M}/\mathbb{Q}\_p}
 $$
 
-The **étale fundamental group** $\pi_1^{\text{et}}(\mathcal{M}, \bar{\theta}) = \varprojlim_{Y/\mathcal{M}} \mathrm{Aut}(Y/\mathcal{M})$ tracks covering spaces of the policy manifold, treating multi-modal exploration as the traversal of distinct homotopy classes of strategies. The **moduli stack of Shtukas** represents time-varying policies as modifications of $G$-bundles on algebraic curves over $\mathbb{F}_q$, providing a profound connection between reinforcement learning dynamics and the Langlands program.
+The **étale fundamental group** $\pi\_1^{\text{et}}(\mathcal{M}, \bar{\theta}) = \varprojlim\_{Y/\mathcal{M}} \mathrm{Aut}(Y/\mathcal{M})$ tracks covering spaces of the policy manifold, treating multi-modal exploration as the traversal of distinct homotopy classes of strategies. The **moduli stack of Shtukas** represents time-varying policies as modifications of $G$-bundles on algebraic curves over $\mathbb{F}\_q$, providing a profound connection between reinforcement learning dynamics and the Langlands program.
 
 **Canonical heights** from arithmetic dynamics prevent parametric explosion in policy space:
 
 $$
-\hat{h}_{\pi}(\theta) = \lim_{n \to \infty} \frac{h(\pi^n(\theta))}{d^n}
+\hat{h}\_{\pi}(\theta) = \lim\_{n \to \infty} \frac{h(\pi^n(\theta))}{d^n}
 $$
 
 **Motivic integration** defines exploration bonuses valued in the Grothendieck ring of varieties, counting arithmetic volume rather than mere measure:
 
 $$
-\int_{\mathcal{L}(\mathcal{X})} \mathbb{L}^{-\mathrm{ord}_t(\mathcal{J}_{\pi})} d\mu_{\text{mot}} \in \mathcal{M}_{\mathbb{C}}
+\int\_{\mathcal{L}(\mathcal{X})} \mathbb{L}^{-\mathrm{ord}\_t(\mathcal{J}\_{\pi})} d\mu\_{\text{mot}} \in \mathcal{M}\_{\mathbb{C}}
 $$
 
 The **condensed mathematics framework** of Clausen and Scholze replaces function spaces with condensed sets $\underline{\mathcal{X}}: \mathrm{ProFin}^{\mathrm{op}} \to \mathrm{Set}$, providing a clean foundation for policy spaces over uncountable action sets. **Prismatic cohomology** encodes meta-parameters as prismatic crystals equipped with Frobenius comparison isomorphisms, detecting characteristic-$p$ periodicities in reward sequences. The layer concludes with **Arakelov intersection theory**, which furnishes sample complexity bounds through arithmetic Riemann-Roch:
 
 $$
-\hat{\chi}(\mathcal{L}, \|\cdot\|) = \frac{1}{2}\hat{c}_1(\mathcal{L}, \|\cdot\|)^n + \text{higher order terms}
+\hat{\chi}(\mathcal{L}, \|\cdot\|) = \frac{1}{2}\hat{c}\_1(\mathcal{L}, \|\cdot\|)^n + \text{higher order terms}
 $$
 
 ### Categorical and Logical Layer
@@ -246,29 +246,29 @@ $$
 
 This layer detects and exploits the topological structure of both the state space and the policy manifold, activated when navigation, coverage, or periodic structure is at issue.
 
-**Persistent homology** of the replay buffer $PH_i(\mathcal{D}) = \bigoplus_{a \leq b} H_i(\mathcal{D}_a, \mathcal{D}_b)$ detects topological holes in experience coverage — regions of state space that are topologically inaccessible given the current sampling distribution. **Leray-Serre spectral sequences** $E_2^{p,q} = H^p(B; \mathcal{H}^q(F)) \Rightarrow H^{p+q}(E)$ compute policy improvement convergence layer by layer through fibrations of the state space. **Operad theory** governs hierarchical skill composition via the little 2-cubes operad $\mathcal{C}_2$, and **factorization homology** $\int_M A = \mathrm{colim}_{\mathrm{Disk}(M)} A^{\otimes \pi_0(-)}$ integrates local trajectory segments into globally consistent policies.
+**Persistent homology** of the replay buffer $PH\_i(\mathcal{D}) = \bigoplus\_{a \leq b} H\_i(\mathcal{D}\_a, \mathcal{D}\_b)$ detects topological holes in experience coverage — regions of state space that are topologically inaccessible given the current sampling distribution. **Leray-Serre spectral sequences** $E\_2^{p,q} = H^p(B; \mathcal{H}^q(F)) \Rightarrow H^{p+q}(E)$ compute policy improvement convergence layer by layer through fibrations of the state space. **Operad theory** governs hierarchical skill composition via the little 2-cubes operad $\mathcal{C}\_2$, and **factorization homology** $\int\_M A = \mathrm{colim}\_{\mathrm{Disk}(M)} A^{\otimes \pi\_0(-)}$ integrates local trajectory segments into globally consistent policies.
 
-**String topology** (Chas-Sullivan) defines a Batalin-Vilkovisky algebra structure on the homology of the free loop space $H_p(L\Omega)$, governing periodic trajectories. **Cyclic homology** and **topological cyclic homology** detect periodic reward structures and provide characteristic-$p$ convergence analysis. **Equivariant stable homotopy theory** handles environments with group symmetries via Bredon cohomology and $G$-spectra. The **Adams spectral sequence** $E_2^{s,t} = \mathrm{Ext}_{\mathcal{A}}^{s,t}(\mathbb{Z}/p, \mathbb{Z}/p) \Rightarrow \pi_{t-s}^S$ computes stable homotopy groups of optimal policies, while **topological modular forms** $\mathrm{tmf}$ provide an elliptic cohomological framework for neural network periodicity.
+**String topology** (Chas-Sullivan) defines a Batalin-Vilkovisky algebra structure on the homology of the free loop space $H\_p(L\Omega)$, governing periodic trajectories. **Cyclic homology** and **topological cyclic homology** detect periodic reward structures and provide characteristic-$p$ convergence analysis. **Equivariant stable homotopy theory** handles environments with group symmetries via Bredon cohomology and $G$-spectra. The **Adams spectral sequence** $E\_2^{s,t} = \mathrm{Ext}\_{\mathcal{A}}^{s,t}(\mathbb{Z}/p, \mathbb{Z}/p) \Rightarrow \pi\_{t-s}^S$ computes stable homotopy groups of optimal policies, while **topological modular forms** $\mathrm{tmf}$ provide an elliptic cohomological framework for neural network periodicity.
 
-**Characteristic classes** — Chern, Chern-Simons — measure the topological twisting of the policy bundle over the state space, and the **Atiyah-Singer index theorem** $\mathrm{ind}(D) = \int_{\mathcal{M}} \hat{A}(\mathcal{M}) \wedge \mathrm{ch}(E)$ computes the analytical index of the policy Dirac operator, providing a homotopy-invariant measure of the complexity of the policy.
+**Characteristic classes** — Chern, Chern-Simons — measure the topological twisting of the policy bundle over the state space, and the **Atiyah-Singer index theorem** $\mathrm{ind}(D) = \int\_{\mathcal{M}} \hat{A}(\mathcal{M}) \wedge \mathrm{ch}(E)$ computes the analytical index of the policy Dirac operator, providing a homotopy-invariant measure of the complexity of the policy.
 
 ### Differential-Geometric Layer
 
 This layer generalizes the Riemannian information geometry of the foundational layer to the full landscape of Finsler geometry — the mathematics of asymmetric, direction-dependent metrics — activated when the learning dynamics are irreversible or non-holonomic.
 
-**Finsler geometry** $F: T\mathcal{M} \to \mathbb{R}_{\geq 0}$, satisfying $F(\theta, \lambda\dot\theta) = |\lambda| F(\theta, \dot\theta)$, provides asymmetric metrics for irreversible learning processes. **Randers metrics** $F = \alpha + \beta$ — the sum of a Riemannian term and a one-form — model time-asymmetric processes with drift. **Carnot-Carathéodory metrics** $d_{CC}$ govern the sub-Riemannian geometry of nonholonomic robotics, where the policy manifold carries a horizontal distribution. **Berwald spaces** provide direction-independent parallel transport, while **Landsberg geometry** governs stationary policy analysis.
+**Finsler geometry** $F: T\mathcal{M} \to \mathbb{R}\_{\geq 0}$, satisfying $F(\theta, \lambda\dot\theta) = |\lambda| F(\theta, \dot\theta)$, provides asymmetric metrics for irreversible learning processes. **Randers metrics** $F = \alpha + \beta$ — the sum of a Riemannian term and a one-form — model time-asymmetric processes with drift. **Carnot-Carathéodory metrics** $d\_{CC}$ govern the sub-Riemannian geometry of nonholonomic robotics, where the policy manifold carries a horizontal distribution. **Berwald spaces** provide direction-independent parallel transport, while **Landsberg geometry** governs stationary policy analysis.
 
-**Cartan geometry** $(\mathcal{G} \to \mathcal{M}, \omega \in \Omega^1(\mathcal{G}; \mathfrak{g}))$ encodes the policy manifold as a $G/H$-homogeneous space equipped with a Cartan connection, and **parabolic geometry** handles partially observable environments through graded filtrations $\mathfrak{g} = \mathfrak{g}_{-k} \oplus \cdots \oplus \mathfrak{g}_k$. The **Fefferman-Graham ambient metric** $\tilde{g} = 2\rho \, dt^2 + 2t \, dt \, d\rho + t^2 g(x, \rho)$ embeds the policy manifold into a Ricci-flat ambient space of one higher dimension, providing a conformal calculus for the value function. **Paneitz $Q$-curvature** furnishes fourth-order regularization, and the **Branson $Q$-curvature anomaly** provides a topological invariant for anomaly detection in value surfaces.
+**Cartan geometry** $(\mathcal{G} \to \mathcal{M}, \omega \in \Omega^1(\mathcal{G}; \mathfrak{g}))$ encodes the policy manifold as a $G/H$-homogeneous space equipped with a Cartan connection, and **parabolic geometry** handles partially observable environments through graded filtrations $\mathfrak{g} = \mathfrak{g}\_{-k} \oplus \cdots \oplus \mathfrak{g}\_k$. The **Fefferman-Graham ambient metric** $\tilde{g} = 2\rho \, dt^2 + 2t \, dt \, d\rho + t^2 g(x, \rho)$ embeds the policy manifold into a Ricci-flat ambient space of one higher dimension, providing a conformal calculus for the value function. **Paneitz $Q$-curvature** furnishes fourth-order regularization, and the **Branson $Q$-curvature anomaly** provides a topological invariant for anomaly detection in value surfaces.
 
 ### Symplectic, Complex, and Exceptional Layer
 
-This layer applies the mathematics of classical mechanics — symplectic geometry and its generalizations — to reinforce a deep duality between the actor (symplectic) and the critic (complex). The exceptional structures of $G_2$, $\mathrm{Spin}(7)$, and $E_8$ are deployed for high-dimensional and multi-agent control.
+This layer applies the mathematics of classical mechanics — symplectic geometry and its generalizations — to reinforce a deep duality between the actor (symplectic) and the critic (complex). The exceptional structures of $G\_2$, $\mathrm{Spin}(7)$, and $E\_8$ are deployed for high-dimensional and multi-agent control.
 
-**Symplectic field theory** and **Fukaya categories** $\mathrm{Fuk}(M, \omega)$, whose objects are Lagrangian submanifolds and whose morphisms are Floer cochain groups $CF^\ast(L_0, L_1)$, identify optimal meeting points in the actor-critic interaction through Lagrangian intersection. **Mirror symmetry** (SYZ) establishes a derived equivalence $\mathrm{Fuk}(X, \omega) \cong D^b\mathrm{Coh}(X^\vee)$, identifying the $Q$-function (a coherent sheaf on the complex side) with the policy (a Lagrangian on the symplectic side).
+**Symplectic field theory** and **Fukaya categories** $\mathrm{Fuk}(M, \omega)$, whose objects are Lagrangian submanifolds and whose morphisms are Floer cochain groups $CF^\ast(L\_0, L\_1)$, identify optimal meeting points in the actor-critic interaction through Lagrangian intersection. **Mirror symmetry** (SYZ) establishes a derived equivalence $\mathrm{Fuk}(X, \omega) \cong D^b\mathrm{Coh}(X^\vee)$, identifying the $Q$-function (a coherent sheaf on the complex side) with the policy (a Lagrangian on the symplectic side).
 
-**Gromov-Witten invariants** count holomorphic curves in the path integral, and **contact topology** with **Legendrian knots** encodes constraint boundaries. **Sasakian geometry** and **3-Sasakian geometry** handle odd-dimensional and quaternionic policy structures. **$G_2$ geometry** $\varphi \in \Omega^3(M^7)$ governs seven-dimensional control problems with exceptional holonomy, and **$\mathrm{Spin}(7)$ geometry** handles eight-dimensional critical point reduction. The **exceptional $F_4$ Lie algebra** $\mathfrak{f}_4 = \mathrm{Der}(\mathbb{O} \otimes \mathbb{O})$ represents states via octonionic Jordan algebras, and the **$E_8$ gauge theory** — with $\dim E_8 = 248$ — provides a grand unified multi-agent architecture.
+**Gromov-Witten invariants** count holomorphic curves in the path integral, and **contact topology** with **Legendrian knots** encodes constraint boundaries. **Sasakian geometry** and **3-Sasakian geometry** handle odd-dimensional and quaternionic policy structures. **$G\_2$ geometry** $\varphi \in \Omega^3(M^7)$ governs seven-dimensional control problems with exceptional holonomy, and **$\mathrm{Spin}(7)$ geometry** handles eight-dimensional critical point reduction. The **exceptional $F\_4$ Lie algebra** $\mathfrak{f}\_4 = \mathrm{Der}(\mathbb{O} \otimes \mathbb{O})$ represents states via octonionic Jordan algebras, and the **$E\_8$ gauge theory** — with $\dim E\_8 = 248$ — provides a grand unified multi-agent architecture.
 
-**Kac-Moody algebras** $\hat{\mathfrak{g}} = \mathfrak{g} \otimes \mathbb{C}[t, t^{-1}] \oplus \mathbb{C}c$ furnish an affine Lie algebra structure for loop groups, and **vertex operator algebras** $Y(a, z) = \sum_{n \in \mathbb{Z}} a_{(n)} z^{-n-1}$ encode chiral symmetries in conformal reinforcement learning. **Hyperkähler geometry** governs multi-objective Pareto manifolds, and **quaternionic Kähler geometry** with $\mathrm{Hol} \subseteq Sp(n)Sp(1)$ guarantees positive sectional curvature — and hence contraction — in the policy update.
+**Kac-Moody algebras** $\hat{\mathfrak{g}} = \mathfrak{g} \otimes \mathbb{C}[t, t^{-1}] \oplus \mathbb{C}c$ furnish an affine Lie algebra structure for loop groups, and **vertex operator algebras** $Y(a, z) = \sum\_{n \in \mathbb{Z}} a\_{(n)} z^{-n-1}$ encode chiral symmetries in conformal reinforcement learning. **Hyperkähler geometry** governs multi-objective Pareto manifolds, and **quaternionic Kähler geometry** with $\mathrm{Hol} \subseteq Sp(n)Sp(1)$ guarantees positive sectional curvature — and hence contraction — in the policy update.
 
 ### Non-commutative and Quantum Layer
 
@@ -276,19 +276,19 @@ This layer extends the geometric framework from commutative function algebras to
 
 **Non-commutative Fisher-Rao geometry** $ds^2 = \mathrm{Tr}(\rho^{-1} d\rho \rho^{-1} d\rho)$ defines a metric on the space of density matrices $\rho \in \mathcal{S}(\mathcal{A})$ in a von Neumann algebra $\mathcal{A}$. **Connes' spectral triples** $(\mathcal{A}, \mathcal{H}, D)$ — consisting of an algebra, a Hilbert space, and a Dirac operator — define the non-commutative geometry of the decision process, with the Dirac operator $D$ encoding the discrete differentiation of sequential actions.
 
-**Quantum groups** $U_q(\mathfrak{g})$ with $q$-deformed coproduct $\Delta(E) = E \otimes K + 1 \otimes E$ provide $q$-deformed exploration, interpolating between classical and deeply quantum regimes. **Tomita-Takesaki theory** governs the modular automorphisms $\sigma_t^\phi(a) = \Delta^{it} a \Delta^{-it}$ of the replay buffer's von Neumann algebra, providing a canonical time evolution for non-equilibrium policy updates. The **Murray-von Neumann factor classification** (Type $\mathrm{I}_n$, $\mathrm{I}_\infty$, $\mathrm{II}_1$, $\mathrm{II}_\infty$, $\mathrm{III}_\lambda$) characterizes the algebraic type of the replay buffer.
+**Quantum groups** $U\_q(\mathfrak{g})$ with $q$-deformed coproduct $\Delta(E) = E \otimes K + 1 \otimes E$ provide $q$-deformed exploration, interpolating between classical and deeply quantum regimes. **Tomita-Takesaki theory** governs the modular automorphisms $\sigma\_t^\phi(a) = \Delta^{it} a \Delta^{-it}$ of the replay buffer's von Neumann algebra, providing a canonical time evolution for non-equilibrium policy updates. The **Murray-von Neumann factor classification** (Type $\mathrm{I}\_n$, $\mathrm{I}\_\infty$, $\mathrm{II}\_1$, $\mathrm{II}\_\infty$, $\mathrm{III}\_\lambda$) characterizes the algebraic type of the replay buffer.
 
-**Quantum Markov semigroups** $\mathcal{T}_t: \mathcal{B}(\mathcal{H}) \to \mathcal{B}(\mathcal{H})$ provide completely positive trace-preserving (CPTP) policy updates consistent with quantum mechanics. **Voiculescu's free probability theory** computes the free cumulants $\kappa_n$ and free entropy relevant to neural tangent kernels. **Wigner's random matrix semicircle law** governs the Hessian spectrum and informs adaptive learning rate selection. **Quantum error correction** via stabilizer codes protects parameters against decoherence noise. **Berry phase** $\gamma_n = i\oint \langle n(R) | \nabla_R n(R) \rangle \cdot dR$ accounts for geometric phases accumulated in adiabatic policy changes, and **deformation quantization** via the Moyal star product $f \star_\hbar g = fg + \hbar\{f, g\} + O(\hbar^2)$ smoothly deforms the classical policy manifold to the quantum regime.
+**Quantum Markov semigroups** $\mathcal{T}\_t: \mathcal{B}(\mathcal{H}) \to \mathcal{B}(\mathcal{H})$ provide completely positive trace-preserving (CPTP) policy updates consistent with quantum mechanics. **Voiculescu's free probability theory** computes the free cumulants $\kappa\_n$ and free entropy relevant to neural tangent kernels. **Wigner's random matrix semicircle law** governs the Hessian spectrum and informs adaptive learning rate selection. **Quantum error correction** via stabilizer codes protects parameters against decoherence noise. **Berry phase** $\gamma\_n = i\oint \langle n(R) | \nabla\_R n(R) \rangle \cdot dR$ accounts for geometric phases accumulated in adiabatic policy changes, and **deformation quantization** via the Moyal star product $f \star\_\hbar g = fg + \hbar\{f, g\} + O(\hbar^2)$ smoothly deforms the classical policy manifold to the quantum regime.
 
 ### Analysis and PDE Frontier Layer
 
 This layer mobilizes the most refined tools of modern analysis — Malliavin calculus, rough path theory, regularity structures, and geometric flows — for environments with singular, highly irregular, or multi-scale dynamics.
 
-**Malliavin calculus** provides the stochastic calculus of variations for policy gradient estimation through pathwise differentiation $\mathbf{D}: \mathbb{D}^{1,2} \to L^2(\Omega; H)$, enabling likelihood-ratio-free gradient estimates. **Gubinelli's rough path theory** via controlled rough paths $\mathcal{D}_X^\gamma = \{Y: \|Y\|_{X, 2\gamma} < \infty\}$ generalizes the signature transform to environments driven by irregular noise beyond the Brownian setting. **Hairer's regularity structures** $\mathcal{T} = \bigoplus_{\alpha \in A} \mathcal{T}_\alpha$ provide a complete renormalization theory for singular stochastic PDEs, handling environments where the value function has non-classical local behavior.
+**Malliavin calculus** provides the stochastic calculus of variations for policy gradient estimation through pathwise differentiation $\mathbf{D}: \mathbb{D}^{1,2} \to L^2(\Omega; H)$, enabling likelihood-ratio-free gradient estimates. **Gubinelli's rough path theory** via controlled rough paths $\mathcal{D}\_X^\gamma = \{Y: \|Y\|\_{X, 2\gamma} < \infty\}$ generalizes the signature transform to environments driven by irregular noise beyond the Brownian setting. **Hairer's regularity structures** $\mathcal{T} = \bigoplus\_{\alpha \in A} \mathcal{T}\_\alpha$ provide a complete renormalization theory for singular stochastic PDEs, handling environments where the value function has non-classical local behavior.
 
-**Bismut's hypoelliptic Laplacian** $\mathcal{A}_b$ interpolates between the elliptic Laplacian (diffusion) and the geodesic flow (deterministic), providing a one-parameter family of operators that simultaneously govern the policy distribution and its geodesics. **Kinetic Fokker-Planck** equations $\partial_t f + v \cdot \nabla_x f = \nabla_v \cdot (\nabla_v f + vf)$ govern swarm dynamics in phase space. **Ricci flow** $\partial_t g_{ij} = -2R_{ij}$ evolves the metric on the weight manifold toward uniformly positive curvature, in the spirit of Hamilton-Perelman, and **mean curvature flow** $\partial_t X/\partial t = H\vec{n}$ evolves decision boundaries toward minimal area.
+**Bismut's hypoelliptic Laplacian** $\mathcal{A}\_b$ interpolates between the elliptic Laplacian (diffusion) and the geodesic flow (deterministic), providing a one-parameter family of operators that simultaneously govern the policy distribution and its geodesics. **Kinetic Fokker-Planck** equations $\partial\_t f + v \cdot \nabla\_x f = \nabla\_v \cdot (\nabla\_v f + vf)$ govern swarm dynamics in phase space. **Ricci flow** $\partial\_t g\_{ij} = -2R\_{ij}$ evolves the metric on the weight manifold toward uniformly positive curvature, in the spirit of Hamilton-Perelman, and **mean curvature flow** $\partial\_t X/\partial t = H\vec{n}$ evolves decision boundaries toward minimal area.
 
-**Gamma-convergence** $\Gamma\text{-}\lim_{\epsilon \to 0} F_\epsilon = F_0$ provides rigorous discrete-to-continuous guarantees as the environment is refined. **Federer-Fleming currents** $\mathbf{T}(\omega) = \int_M \langle \omega, \vec{T} \rangle d\|T\|$ represent rectifiable sets of trajectories in geometric measure theory, and **varifolds** generalize these to non-smooth random surfaces. **Infinite-dimensional Morse theory** with the Palais-Smale condition guarantees the existence and non-degeneracy of critical points on Hilbert manifolds, providing a complete topological picture of the loss landscape.
+**Gamma-convergence** $\Gamma\text{-}\lim\_{\epsilon \to 0} F\_\epsilon = F\_0$ provides rigorous discrete-to-continuous guarantees as the environment is refined. **Federer-Fleming currents** $\mathbf{T}(\omega) = \int\_M \langle \omega, \vec{T} \rangle d\|T\|$ represent rectifiable sets of trajectories in geometric measure theory, and **varifolds** generalize these to non-smooth random surfaces. **Infinite-dimensional Morse theory** with the Palais-Smale condition guarantees the existence and non-degeneracy of critical points on Hilbert manifolds, providing a complete topological picture of the loss landscape.
 
 ### Logic, Model Theory, and Computability Layer
 
@@ -296,7 +296,7 @@ This layer grounds the algorithm in the deepest foundations of mathematical logi
 
 **O-minimality** — the property that every definable subset of the real line is a finite union of points and intervals — prevents topological pathologies in the environment. Under o-minimality, all relevant geometric objects are tame, and convergence theory applies without measure-zero exceptions. **Stability theory** in model theory (NIP, stable, simple, dp-rank) provides a classification of the environment's first-order theory, governing the combinatorial complexity of learning.
 
-**Descriptive set theory** with the Borel hierarchy $\Sigma^0_1, \Pi^0_1, \Sigma^1_1, \Pi^1_1$ and Polish group actions $G \curvearrowright X$ classifies the complexity of environment recognition. **Borel equivalence relations** and their reducibility order $E \leq_B F$ distinguish smooth from non-smooth classification problems. **Computable analysis** (Type-2 theory of effectivity) via representations $\nu: \Sigma^\omega \to X$ grounds the algorithm in classical recursion theory.
+**Descriptive set theory** with the Borel hierarchy $\Sigma^0\_1, \Pi^0\_1, \Sigma^1\_1, \Pi^1\_1$ and Polish group actions $G \curvearrowright X$ classifies the complexity of environment recognition. **Borel equivalence relations** and their reducibility order $E \leq\_B F$ distinguish smooth from non-smooth classification problems. **Computable analysis** (Type-2 theory of effectivity) via representations $\nu: \Sigma^\omega \to X$ grounds the algorithm in classical recursion theory.
 
 **Cubical type theory** and **homotopy type theory** provide a constructive proof-theoretic foundation for policy verification: policies are terms, specifications are types, and the learning process is normalization. **Realizability toposes** $\mathrm{RT}(\mathcal{A})$ internalize computability within the categorical semantics. **Cohen forcing extensions** $M[G]$ model counterfactual reasoning about alternative environment realizations. **Game semantics** (Hyland-Ong) represent policies as innocent strategies in a dialogue game, providing a fully abstract denotational semantics for the actor-critic interaction. The **modal $\mu$-calculus** with fixed-point operators $\mu X.\phi$ and $\nu X.\phi$ expresses and verifies temporal properties of the learned policy.
 
@@ -307,21 +307,21 @@ The deepest layer connects reinforcement learning to the frontier of theoretical
 **String theory worldsheets** as two-dimensional conformal field theories on $(\tau, \sigma)$ represent trajectories as strings, with the Polyakov action:
 
 $$
-S = \frac{1}{4\pi\alpha'} \int_{\Sigma} d^2\sigma \sqrt{h} \, h^{ab} \partial_a X^{\mu} \partial_b X_{\mu}
+S = \frac{1}{4\pi\alpha'} \int\_{\Sigma} d^2\sigma \sqrt{h} \, h^{ab} \partial\_a X^{\mu} \partial\_b X\_{\mu}
 $$
 
 **AdS/CFT correspondence** establishes a holographic duality between the bulk policy (gravity in $(d+1)$-dimensional Anti-de Sitter space) and the boundary environment (conformal field theory in $d$ dimensions):
 
 $$
-Z_{\text{CFT}}[\phi\_0] = \int\_{\phi|_{\partial} = \phi\_0} \mathcal{D}\phi \, e^{-S\_{\text{grav}}[\phi]}
+Z\_{\text{CFT}}[\phi\_0] = \int\_{\phi|\_{\partial} = \phi\_0} \mathcal{D}\phi \, e^{-S\_{\text{grav}}[\phi]}
 $$
 
-**Loop quantum gravity** represents the state space as a spin network Hilbert space $\mathcal{H} = L^2(\mathcal{A}/\mathcal{G}, d\mu_{\text{AL}})$, and **Penrose's twistor theory** $\mathbb{PT} = \mathbb{CP}^3$ encodes complex state spaces through the Penrose transform. **Supersymmetry** pairs bosonic (exploitation) and fermionic (exploration) degrees of freedom via $\{Q_\alpha, \bar{Q}_{\dot\beta}\} = 2\sigma^\mu_{\alpha\dot\beta} P_\mu$.
+**Loop quantum gravity** represents the state space as a spin network Hilbert space $\mathcal{H} = L^2(\mathcal{A}/\mathcal{G}, d\mu\_{\text{AL}})$, and **Penrose's twistor theory** $\mathbb{PT} = \mathbb{CP}^3$ encodes complex state spaces through the Penrose transform. **Supersymmetry** pairs bosonic (exploitation) and fermionic (exploration) degrees of freedom via $\{Q\_\alpha, \bar{Q}\_{\dot\beta}\} = 2\sigma^\mu\_{\alpha\dot\beta} P\_\mu$.
 
-**Renormalization group flow** $\Lambda \frac{d}{d\Lambda} g_i(\Lambda) = \beta_i(g(\Lambda))$ performs Wilsonian integration over fast environment scales, providing a principled coarse-graining of environment dynamics. **Instanton calculus** governs tunneling between policy optima:
+**Renormalization group flow** $\Lambda \frac{d}{d\Lambda} g\_i(\Lambda) = \beta\_i(g(\Lambda))$ performs Wilsonian integration over fast environment scales, providing a principled coarse-graining of environment dynamics. **Instanton calculus** governs tunneling between policy optima:
 
 $$
-S_E = \frac{8\pi^2}{g^2}, \qquad \int \mathcal{D}\phi \, e^{-S_E} \sim \sum_{\text{instantons}} e^{-S_E}
+S\_E = \frac{8\pi^2}{g^2}, \qquad \int \mathcal{D}\phi \, e^{-S\_E} \sim \sum\_{\text{instantons}} e^{-S\_E}
 $$
 
 **BRST quantization** eliminates gauge redundancies in the policy parametrization through ghost fields with $s^2 = 0$, and the **conformal bootstrap** enforces crossing symmetry as a self-consistency condition on the scaling laws of the value function.
@@ -329,13 +329,13 @@ $$
 **The Ryu-Takayanagi formula** provides holographic entanglement entropy:
 
 $$
-S_A = \frac{\mathrm{Area}(\gamma_A)}{4G\_N}, \qquad \partial\gamma\_A = \partial A
+S\_A = \frac{\mathrm{Area}(\gamma\_A)}{4G\_N}, \qquad \partial\gamma\_A = \partial A
 $$
 
 bounding the generalization error of the policy through the area of a minimal surface in the bulk geometry. **Out-of-time-ordered correlators** (OTOCs) $\langle W(t)VW(t)V \rangle\_\beta$ measure quantum scrambling and policy stability through the Lyapunov exponent $\lambda\_L$. The layer concludes with **ER=EPR**: the identification of Einstein-Rosen bridges (wormholes) with Einstein-Podolsky-Rosen pairs (entanglement), suggesting that the emergent geometry of the policy space is itself a consequence of the entanglement structure among agents:
 
 $$
-\mathrm{Distance}(x, y) \sim S_{\mathrm{ent}}(\rho_{xy})
+\mathrm{Distance}(x, y) \sim S\_{\mathrm{ent}}(\rho\_{xy})
 $$
 
 ---
@@ -345,7 +345,7 @@ $$
 The complete objective functional of SIGMA-WIGAC-Ω integrates all architectural layers through a composition of functors on the $\infty$-category of policies:
 
 $$
-\mathcal{J}_{\Omega}: \mathrm{Obj}(\mathcal{P}_\infty\text{-}\mathrm{Pol}) \to \mathbb{R} \cup \{+\infty\}
+\mathcal{J}\_{\Omega}: \mathrm{Obj}(\mathcal{P}\_\infty\text{-}\mathrm{Pol}) \to \mathbb{R} \cup \{+\infty\}
 $$
 
 $$
@@ -357,30 +357,30 @@ $$
 $$
 
 where:
-- $\Phi(\omega) = \sum_{t=0}^{|\omega|} \gamma^t r(x_t, a_t)$ is the discounted return functional
-- $\mathcal{H}_{\mathrm{mot}}(\mathbb{P} | \mathbb{P}_{\mathrm{ref}})$ is the motivic relative entropy, valued in the Grothendieck ring
-- $\mathcal{W}_{\mathrm{FR}}^2$ is the Wasserstein-Fisher-Rao transport penalty
-- $\int_{\mathcal{M}} \hat{A}(\mathcal{M}) \wedge \mathrm{ch}(E)$ is the Atiyah-Singer index regularizer
-- $\|\pi\|_{\mathrm{Fuk}(M,\omega)}$ is the Fukaya categorical norm penalizing non-Lagrangian policies
-- $\mathrm{Tr}_{\mathcal{A}}(\rho \log \rho)$ is the von Neumann entropy of the policy's quantum state
-- $\|\mathcal{F}\|_{\dot{H}^{-1}}$ is the negative Sobolev norm of the continuity equation residual
-- $\mathrm{rank}(E_8\text{-bundle})$ is the topological charge of the multi-agent bundle
+- $\Phi(\omega) = \sum\_{t=0}^{|\omega|} \gamma^t r(x\_t, a\_t)$ is the discounted return functional
+- $\mathcal{H}\_{\mathrm{mot}}(\mathbb{P} | \mathbb{P}\_{\mathrm{ref}})$ is the motivic relative entropy, valued in the Grothendieck ring
+- $\mathcal{W}\_{\mathrm{FR}}^2$ is the Wasserstein-Fisher-Rao transport penalty
+- $\int\_{\mathcal{M}} \hat{A}(\mathcal{M}) \wedge \mathrm{ch}(E)$ is the Atiyah-Singer index regularizer
+- $\|\pi\|\_{\mathrm{Fuk}(M,\omega)}$ is the Fukaya categorical norm penalizing non-Lagrangian policies
+- $\mathrm{Tr}\_{\mathcal{A}}(\rho \log \rho)$ is the von Neumann entropy of the policy's quantum state
+- $\|\mathcal{F}\|\_{\dot{H}^{-1}}$ is the negative Sobolev norm of the continuity equation residual
+- $\mathrm{rank}(E\_8\text{-bundle})$ is the topological charge of the multi-agent bundle
 
 The **natural gradient flow in $\infty$-categories** is given by:
 
 $$
-\theta_{k+1} = \mathrm{Exp}^{\mathcal{M}}_{\theta_k}\!\left(-\beta \cdot \mathrm{hofib}\!\left(G(\theta_k) \to \nabla^{\mathrm{right}}_{\theta_k} \mathcal{J}_{\Omega}\right)\right)
+\theta\_{k+1} = \mathrm{Exp}^{\mathcal{M}}\_{\theta\_k}\!\left(-\beta \cdot \mathrm{hofib}\!\left(G(\theta\_k) \to \nabla^{\mathrm{right}}\_{\theta\_k} \mathcal{J}\_{\Omega}\right)\right)
 $$
 
-where $\mathrm{hofib}$ denotes the homotopy fiber in the $\infty$-category of spectra, $\nabla^{\mathrm{right}}$ is the right derived functor of the gradient, and $\mathrm{Exp}^{\mathcal{M}}$ is computed via the $\mathcal{C}_2$-operad action.
+where $\mathrm{hofib}$ denotes the homotopy fiber in the $\infty$-category of spectra, $\nabla^{\mathrm{right}}$ is the right derived functor of the gradient, and $\mathrm{Exp}^{\mathcal{M}}$ is computed via the $\mathcal{C}\_2$-operad action.
 
 For the mean-field limit, the master equation is lifted to a derived stack $\mathcal{X} = [\mathrm{Spec}(A)/G]$:
 
 $$
-\partial_t U + \frac{1}{2}\mathbb{L}_U U + \langle \nabla_x \partial_{\mu} U, b(x, \mu, \pi^{\ast}) \rangle + \frac{\hbar}{2}\mathrm{Tr}(\sigma \sigma^T \partial_{xx} \partial_{\mu} U) + \hbar^2 \frac{\delta \Gamma}{\delta U} = 0
+\partial\_t U + \frac{1}{2}\mathbb{L}\_U U + \langle \nabla\_x \partial\_{\mu} U, b(x, \mu, \pi^{\ast}) \rangle + \frac{\hbar}{2}\mathrm{Tr}(\sigma \sigma^T \partial\_{xx} \partial\_{\mu} U) + \hbar^2 \frac{\delta \Gamma}{\delta U} = 0
 $$
 
-where $\mathbb{L}_U$ is the Lie derivative along the $L_\infty$-algebra vector field, and $\frac{\delta \Gamma}{\delta U}$ incorporates quantum corrections from the non-commutative layer.
+where $\mathbb{L}\_U$ is the Lie derivative along the $L\_\infty$-algebra vector field, and $\frac{\delta \Gamma}{\delta U}$ incorporates quantum corrections from the non-commutative layer.
 
 ---
 
@@ -513,30 +513,30 @@ RETURN θ, ComponentCache
 
 ### Theorem I: Grand Unified Convergence
 
-Let $\mathcal{J}_\Omega$ be the complete objective with all layers activated. Under the assumptions that (a) the theory of the environment is o-minimal (Logic Layer), (b) the environment theory is NIP or stable (Logic Layer), (c) the Dirac operator $D$ of the decision process has discrete spectrum (Quantum Layer), (d) the Finsler curvature satisfies $\|R\| \leq \Lambda$ (Differential-Geometric Layer), and (e) the quantum Markov semigroup is primitive (Quantum Layer), the sequence $\{\theta_k\}$ generated by SIGMA-WIGAC-Ω satisfies:
+Let $\mathcal{J}\_\Omega$ be the complete objective with all layers activated. Under the assumptions that (a) the theory of the environment is o-minimal (Logic Layer), (b) the environment theory is NIP or stable (Logic Layer), (c) the Dirac operator $D$ of the decision process has discrete spectrum (Quantum Layer), (d) the Finsler curvature satisfies $\|R\| \leq \Lambda$ (Differential-Geometric Layer), and (e) the quantum Markov semigroup is primitive (Quantum Layer), the sequence $\{\theta\_k\}$ generated by SIGMA-WIGAC-Ω satisfies:
 
 $$
-d_{\mathcal{W}_{\text{FR}}}\!\left(\mathbb{P}^{\pi_{\theta_k}}, \mathbb{P}^{\ast}\right) \leq C \cdot k^{-\alpha} \cdot \exp\!\left(-\beta \cdot \mathrm{rank}(E_8\text{-bundle})\right)
+d\_{\mathcal{W}\_{\text{FR}}}\!\left(\mathbb{P}^{\pi\_{\theta\_k}}, \mathbb{P}^{\ast}\right) \leq C \cdot k^{-\alpha} \cdot \exp\!\left(-\beta \cdot \mathrm{rank}(E\_8\text{-bundle})\right)
 $$
 
-where $\alpha$ depends on the Hairer regularity structure of the value function (PDE Frontier Layer), and $\beta$ depends on the instanton action $S_E = 8\pi^2/g^2$ (Physics Layer). The exponential factor in the topological charge of the $E_8$-bundle reflects the hierarchical organization of the multi-agent system across the physical scales resolved by the Physics Layer.
+where $\alpha$ depends on the Hairer regularity structure of the value function (PDE Frontier Layer), and $\beta$ depends on the instanton action $S\_E = 8\pi^2/g^2$ (Physics Layer). The exponential factor in the topological charge of the $E\_8$-bundle reflects the hierarchical organization of the multi-agent system across the physical scales resolved by the Physics Layer.
 
 ### Theorem II: Holographic Sample Complexity
 
-For an environment with effective dimension $D_{\mathrm{eff}}$ determined by the Lyapunov spectrum and Anti-de Sitter radius $R_{\mathrm{AdS}}$ (Physics Layer), the sample complexity satisfies:
+For an environment with effective dimension $D\_{\mathrm{eff}}$ determined by the Lyapunov spectrum and Anti-de Sitter radius $R\_{\mathrm{AdS}}$ (Physics Layer), the sample complexity satisfies:
 
 $$
-N_{\text{sample}} = \tilde{O}\!\left(\epsilon^{-\frac{D_{\mathrm{eff}}}{2} \cdot \frac{R_{\mathrm{AdS}}}{G_N^{(D+1)}}}\right)
+N\_{\text{sample}} = \tilde{O}\!\left(\epsilon^{-\frac{D\_{\mathrm{eff}}}{2} \cdot \frac{R\_{\mathrm{AdS}}}{G\_N^{(D+1)}}}\right)
 $$
 
-where $G_N^{(D+1)}$ is the $(D+1)$-dimensional Newton constant in the bulk. This bound replaces the standard polynomial dependence on the ambient dimension with a holographically reduced dimension, reflecting the information-theoretic compression encoded in the AdS/CFT correspondence.
+where $G\_N^{(D+1)}$ is the $(D+1)$-dimensional Newton constant in the bulk. This bound replaces the standard polynomial dependence on the ambient dimension with a holographically reduced dimension, reflecting the information-theoretic compression encoded in the AdS/CFT correspondence.
 
 ### Theorem III: Emergent Generalization
 
 When the Physics Layer is fully activated, the policy exhibits emergent generalization bounds governed by the Ryu-Takayanagi formula:
 
 $$
-\mathrm{Gen}(\pi) \leq \frac{\langle\mathrm{Area}(\gamma_A)\rangle}{4G_N} + O\!\left(\frac{1}{N_{\mathrm{agents}}}\right)
+\mathrm{Gen}(\pi) \leq \frac{\langle\mathrm{Area}(\gamma\_A)\rangle}{4G\_N} + O\!\left(\frac{1}{N\_{\mathrm{agents}}}\right)
 $$
 
 The generalization error is bounded by the expectation of minimal surface areas in the emergent bulk geometry: a policy with low entanglement entropy among its agents is one that generalizes well. This provides a holographic, information-geometric account of generalization in reinforcement learning.
