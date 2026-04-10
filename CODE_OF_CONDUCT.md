@@ -18,4 +18,4 @@ We are committed to providing a friendly, safe and welcoming environment for all
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project maintainer.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project maintainer at [INSERT EMAIL ADDRESS].
