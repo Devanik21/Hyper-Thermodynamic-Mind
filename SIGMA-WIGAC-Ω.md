@@ -84,9 +84,10 @@ $$
 
 The geometric decay $2^{-t}$ ensures completeness: longer trajectories contribute exponentially less to distance, while the Fréchet normalization maintains the metric property. Under this metric, $(\Omega, d\_{\Omega})$ is a complete separable metric space, and we may define the Wasserstein-type space:
 
-$$
-\mathcal{P}\_2(\Omega) = \left\{ \mathbb{P} \in \mathcal{P}(\Omega) : \int\_{\Omega} d\_{\Omega}^2(\omega, \omega\_0) \, d\mathbb{P}(\omega) < \infty \right\}
-$$
+
+$$\mathcal{P}_2(\Omega) = \left\{ \mathbb{P} \in \mathcal{P}(\Omega) : \int_{\Omega} d_{\Omega}^2(\omega, \omega_0) \, d\mathbb{P}(\omega) < \infty \right\}$$
+
+
 
 The entire learning problem is lifted to the optimization of probability measures $\mathbb{P} \in \mathcal{P}\_2(\Omega)$, treating the trajectory distribution itself — rather than any individual policy — as the primary object of study.
 
@@ -95,7 +96,7 @@ The entire learning problem is lifted to the optimization of probability measure
 For a trajectory $\omega\_{:t} = (x\_0, a\_0, \ldots, x\_t)$, we construct the **augmented path** $\bar{\omega}: [0,1] \to \mathbb{R}^{d+1}$ by linearly interpolating the sequence $(t, x\_t, a\_t)$. The **Chen-Fliess signature** of this path is the collection of all iterated integrals:
 
 $$
-S(\omega\_{:t}) = \left(1, \int\_{0<u\_1<1} d\bar{\omega}\_{u\_1},\ \int\_{0<u\_1<u\_2<1} d\bar{\omega}\_{u\_1} \otimes d\bar{\omega}\_{u\_2},\ \ldots \right) \in \mathcal{T}((\mathbb{R}^{d+1}))
+S(\omega_{:t}) = \left( 1, \int_{0 < u_1 < 1} d\bar{\omega}_{u_1}, \int_{0 < u_1 < u_2 < 1} d\bar{\omega}_{u_1} \otimes d\bar{\omega}_{u_2}, \dots \right) \in \mathcal{T}((\mathbb{R}^{d+1}))
 $$
 
 where $\mathcal{T}((V)) = \prod\_{k=0}^{\infty} V^{\otimes k}$ denotes the completed tensor algebra over $V = \mathbb{R}^{d+1}$. The truncated signature $S\_N(\omega) = \mathrm{proj}\_{\leq N} S(\omega)$ provides a **universal feature map for paths modulo tree-like equivalence**, by the Hambly-Lyons uniqueness theorem: two paths with the same signature are indistinguishable as controlled systems.
@@ -353,10 +354,11 @@ $$
 $$
 
 $$
-+ \underbrace{\eta \int\_{\mathcal{M}} \hat{A}(\mathcal{M}) \wedge \mathrm{ch}(E)}\_{\text{Index-theoretic regularizer}} + \underbrace{\zeta \, \|\pi\|\_{\mathrm{Fuk}(M,\omega)}}\_{\text{Fukaya norm}} + \underbrace{\iota \, \mathrm{Tr}\_{\mathcal{A}}(\rho \log \rho)}\_{\text{Quantum entropy}} + \underbrace{\kappa \, \|\mathcal{F}\|\_{\dot{H}^{-1}}}\_{\text{Sobolev transport}} + \underbrace{\lambda\_{\mathrm{top}} \, \mathrm{rank}(E\_8\text{-bundle})}\_{\text{Topological charge}}
++\underbrace{\eta \int\_{\mathcal{M}} \hat{A}(\mathcal{M}) \wedge \mathrm{ch}(E)}\_{\text{Index-theoretic regularizer}} + \underbrace{\zeta \, \|\pi\|\_{\mathrm{Fuk}(M,\omega)}}\_{\text{Fukaya norm}} + \underbrace{\iota \, \mathrm{Tr}\_{\mathcal{A}}(\rho \log \rho)}\_{\text{Quantum entropy}} + \underbrace{\kappa \, \|\mathcal{F}\|\_{\dot{H}^{-1}}}\_{\text{Sobolev transport}} + \underbrace{\lambda\_{\mathrm{top}} \, \mathrm{rank}(E\_8\text{-bundle})}\_{\text{Topological charge}}
 $$
 
 where:
+
 - $\Phi(\omega) = \sum\_{t=0}^{|\omega|} \gamma^t r(x\_t, a\_t)$ is the discounted return functional
 - $\mathcal{H}\_{\mathrm{mot}}(\mathbb{P} | \mathbb{P}\_{\mathrm{ref}})$ is the motivic relative entropy, valued in the Grothendieck ring
 - $\mathcal{W}\_{\mathrm{FR}}^2$ is the Wasserstein-Fisher-Rao transport penalty
