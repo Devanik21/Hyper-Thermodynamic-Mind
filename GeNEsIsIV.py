@@ -29,7 +29,7 @@ import lzma
 # ── Page must be very first Streamlit call ────────────────────────────────────
 st.set_page_config(
     page_title="HyPER AgEnT",
-    page_icon="",
+    page_icon="🎨",
     layout="wide",
     initial_sidebar_state="expanded",
 )
