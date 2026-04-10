@@ -85,7 +85,7 @@ $$
 The geometric decay $2^{-t}$ ensures completeness: longer trajectories contribute exponentially less to distance, while the Fréchet normalization maintains the metric property. Under this metric, $(\Omega, d\_{\Omega})$ is a complete separable metric space, and we may define the Wasserstein-type space:
 
 
-$$\mathcal{P}_2(\Omega) = \left\{ \mathbb{P} \in \mathcal{P}(\Omega) : \int_{\Omega} d_{\Omega}^2(\omega, \omega_0) \, d\mathbb{P}(\omega) < \infty \right\}$$
+$$\mathcal{P}_2(\Omega) = \left\\{ \mathbb{P} \in \mathcal{P}(\Omega) : \int_{\Omega} d_{\Omega}^2(\omega, \omega_0) \, d\mathbb{P}(\omega) < \infty \right\\}$$
 
 
 
