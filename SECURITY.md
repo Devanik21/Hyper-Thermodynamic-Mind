@@ -10,6 +10,6 @@ Currently, the master branch of this repository is supported with security updat
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability within this project, please send an e-mail to the maintainer. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this project, please send an e-mail to [INSERT EMAIL ADDRESS]. All security vulnerabilities will be promptly addressed.
 
 Please do not open a public issue for a security vulnerability until we have had a chance to investigate it and provide a fix or mitigation.
