@@ -477,10 +477,10 @@ If you use SIGMA-WIGAC in your research, please cite:
 ```bibtex
 @article{sigma_wigac_2026,
   title={SIGMA-WIGAC: Signature-Infused Geometric Mean-Field Actor-Critic in Wasserstein-Fisher-Rao Space},
-  author={[Anonymous]},
+  author={[Devanik]},
   journal={arXiv preprint},
   year={2026},
-  url={https://github.com/yourusername/sigma-wigac}
+  url={https://github.com/Devanik21/sigma-wigac}
 }
 ```
 
