@@ -135,14 +135,14 @@ The vector field $v_t$ encodes transport (policy improvement), while the scalar 
 The **geometric advantage function** incorporates the WFR functional derivative as a transport regularizer:
 
 $$
-\mathrm{Adv}(\omega_{:t}, a) = Q_{\psi}(\omega_{:t}, a) - \lambda \log \pi_{\theta}(a|x_t) + \gamma \frac{\delta \mathcal{W}_{\text{FR}}^2}{\delta \mathbb{P}}(\omega_{:t})
+\mathrm{Adv}(\omega\_{:t}, a) = Q\_{\psi}(\omega\_{:t}, a) - \lambda \log \pi\_{\theta}(a|x\_t) + \gamma \frac{\delta \mathcal{W}\_{\text{FR}}^2}{\delta \mathbb{P}}(\omega\_{:t})
 $$
 
 The WFR gradient is computed by solving the coupled continuity system with a Lagrangian particle method, providing a principled geometric signal for the actor update.
 
 ### Information Geometry of Policy Manifolds
 
-Let $\mathcal{M} = \{\pi_{\theta} : \theta \in \Theta \subseteq \mathbb{R}^d\}$ be a parametric family of policies. Each $\pi_\theta$ induces a path measure $\mathbb{P}^{\pi_\theta} \in \mathcal{P}_2(\Omega)$, and the mapping $\theta \mapsto \mathbb{P}^{\pi_\theta}$ is a smooth immersion of $\Theta$ into the infinite-dimensional manifold $\mathcal{P}_2(\Omega)$.
+Let $\mathcal{M} = \{\pi_{\theta} : \theta \in \Theta \subseteq \mathbb{R}^d\}$ be a parametric family of policies. Each $\pi\_\theta$ induces a path measure $\mathbb{P}^{\pi\_\theta} \in \mathcal{P}\_2(\Omega)$, and the mapping $\theta \mapsto \mathbb{P}^{\pi\_\theta}$ is a smooth immersion of $\Theta$ into the infinite-dimensional manifold $\mathcal{P}\_2(\Omega)$.
 
 The **Fisher-Rao metric tensor** on $\mathcal{M}$ is:
 
@@ -230,7 +230,7 @@ $$
 
 This layer replaces the set-theoretic foundations of standard reinforcement learning with a higher-categorical and logical framework, activated when abstract compositional structure is required.
 
-The **$\infty$-category of policies** $\mathcal{P}\mathrm{ol} \in \mathrm{Cat}_\infty$ treats policy morphisms as homotopy classes of strategy updates, with mapping spaces $\mathrm{Map}_{\mathcal{P}\mathrm{ol}}(\pi, \pi') \simeq \Omega^\infty \mathrm{Hom}_{\mathrm{Spectra}}(\cdots)$ valued in spectra. **Sheaf theory** encodes partial observability through the cohomological obstruction $H^1(X; \mathcal{F})$, which precisely measures the failure of local state estimates to patch into a global consistent policy. **Grothendieck toposes** internalize contextual bandit logic within an internal language $\mathcal{E} = \mathrm{Sh}(\mathcal{C}, J)$, allowing observation modalities to vary across the state space.
+The **$\infty$-category of policies** $\mathcal{P}\mathrm{ol} \in \mathrm{Cat}\_{\infty}$ treats policy morphisms as homotopy classes of strategy updates, with mapping spaces $\mathrm{Map}\_{\mathcal{P}\mathrm{ol}}(\pi, \pi') \simeq \Omega^\infty \mathrm{Hom}\_{\mathrm{Spectra}}(\cdots)$ valued in spectra. **Sheaf theory** encodes partial observability through the cohomological obstruction $H^1(X; \mathcal{F})$, which precisely measures the failure of local state estimates to patch into a global consistent policy. **Grothendieck toposes** internalize contextual bandit logic within an internal language $\mathcal{E} = \mathrm{Sh}(\mathcal{C}, J)$, allowing observation modalities to vary across the state space.
 
 **Linear logic and game semantics** represent the actor-critic duality as a proof-theoretic phenomenon: the actor corresponds to a proof $\pi: A \vdash B$ and the critic to a counter-proof $\kappa: B \vdash A$, with learning as cut-elimination. **Differential linear logic** provides a categorical account of backpropagation through the differentiation of proofs. **Modal homotopy type theory** equips the system with necessity and possibility modalities ($\square A$: necessarily safe, $\Diamond A$: possibly reachable) for proof-relevant safety verification.
 
@@ -313,7 +313,7 @@ $$
 **AdS/CFT correspondence** establishes a holographic duality between the bulk policy (gravity in $(d+1)$-dimensional Anti-de Sitter space) and the boundary environment (conformal field theory in $d$ dimensions):
 
 $$
-Z_{\text{CFT}}[\phi_0] = \int_{\phi|_{\partial} = \phi_0} \mathcal{D}\phi \, e^{-S_{\text{grav}}[\phi]}
+Z_{\text{CFT}}[\phi\_0] = \int\_{\phi|_{\partial} = \phi\_0} \mathcal{D}\phi \, e^{-S\_{\text{grav}}[\phi]}
 $$
 
 **Loop quantum gravity** represents the state space as a spin network Hilbert space $\mathcal{H} = L^2(\mathcal{A}/\mathcal{G}, d\mu_{\text{AL}})$, and **Penrose's twistor theory** $\mathbb{PT} = \mathbb{CP}^3$ encodes complex state spaces through the Penrose transform. **Supersymmetry** pairs bosonic (exploitation) and fermionic (exploration) degrees of freedom via $\{Q_\alpha, \bar{Q}_{\dot\beta}\} = 2\sigma^\mu_{\alpha\dot\beta} P_\mu$.
@@ -329,10 +329,10 @@ $$
 **The Ryu-Takayanagi formula** provides holographic entanglement entropy:
 
 $$
-S_A = \frac{\mathrm{Area}(\gamma_A)}{4G_N}, \qquad \partial\gamma_A = \partial A
+S_A = \frac{\mathrm{Area}(\gamma_A)}{4G\_N}, \qquad \partial\gamma\_A = \partial A
 $$
 
-bounding the generalization error of the policy through the area of a minimal surface in the bulk geometry. **Out-of-time-ordered correlators** (OTOCs) $\langle W(t)VW(t)V \rangle_\beta$ measure quantum scrambling and policy stability through the Lyapunov exponent $\lambda_L$. The layer concludes with **ER=EPR**: the identification of Einstein-Rosen bridges (wormholes) with Einstein-Podolsky-Rosen pairs (entanglement), suggesting that the emergent geometry of the policy space is itself a consequence of the entanglement structure among agents:
+bounding the generalization error of the policy through the area of a minimal surface in the bulk geometry. **Out-of-time-ordered correlators** (OTOCs) $\langle W(t)VW(t)V \rangle\_\beta$ measure quantum scrambling and policy stability through the Lyapunov exponent $\lambda\_L$. The layer concludes with **ER=EPR**: the identification of Einstein-Rosen bridges (wormholes) with Einstein-Podolsky-Rosen pairs (entanglement), suggesting that the emergent geometry of the policy space is itself a consequence of the entanglement structure among agents:
 
 $$
 \mathrm{Distance}(x, y) \sim S_{\mathrm{ent}}(\rho_{xy})
@@ -349,11 +349,11 @@ $$
 $$
 
 $$
-\mathcal{J}_{\Omega}(\mathbb{P}) = \underbrace{\mathbb{E}^{\mathbb{P}}[\Phi(\omega)]}_{\text{Path return}} + \underbrace{\lambda \, \mathcal{H}_{\text{mot}}(\mathbb{P}\,|\,\mathbb{P}_{\text{ref}})}_{\text{Motivic entropy}} + \underbrace{\gamma \, \mathcal{W}_{\text{FR}}^2(\mathbb{P}, \mu^{\ast})}_{\text{Transport penalty}}
+\mathcal{J}\_{\Omega}(\mathbb{P}) = \underbrace{\mathbb{E}^{\mathbb{P}}[\Phi(\omega)]}\_{\text{Path return}} + \underbrace{\lambda \, \mathcal{H}\_{\text{mot}}(\mathbb{P}\,|\,\mathbb{P}\_{\text{ref}})}\_{\text{Motivic entropy}} + \underbrace{\gamma \, \mathcal{W}\_{\text{FR}}^2(\mathbb{P}, \mu^{\ast})}\_{\text{Transport penalty}}
 $$
 
 $$
-+ \underbrace{\eta \int_{\mathcal{M}} \hat{A}(\mathcal{M}) \wedge \mathrm{ch}(E)}_{\text{Index-theoretic regularizer}} + \underbrace{\zeta \, \|\pi\|_{\mathrm{Fuk}(M,\omega)}}_{\text{Fukaya norm}} + \underbrace{\iota \, \mathrm{Tr}_{\mathcal{A}}(\rho \log \rho)}_{\text{Quantum entropy}} + \underbrace{\kappa \, \|\mathcal{F}\|_{\dot{H}^{-1}}}_{\text{Sobolev transport}} + \underbrace{\lambda_{\mathrm{top}} \, \mathrm{rank}(E_8\text{-bundle})}_{\text{Topological charge}}
++ \underbrace{\eta \int\_{\mathcal{M}} \hat{A}(\mathcal{M}) \wedge \mathrm{ch}(E)}\_{\text{Index-theoretic regularizer}} + \underbrace{\zeta \, \|\pi\|\_{\mathrm{Fuk}(M,\omega)}}\_{\text{Fukaya norm}} + \underbrace{\iota \, \mathrm{Tr}\_{\mathcal{A}}(\rho \log \rho)}\_{\text{Quantum entropy}} + \underbrace{\kappa \, \|\mathcal{F}\|\_{\dot{H}^{-1}}}\_{\text{Sobolev transport}} + \underbrace{\lambda\_{\mathrm{top}} \, \mathrm{rank}(E\_8\text{-bundle})}\_{\text{Topological charge}}
 $$
 
 where:
