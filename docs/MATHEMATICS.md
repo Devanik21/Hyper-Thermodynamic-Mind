@@ -2,9 +2,9 @@
 
 ## 1. Hilbert Space Substrate
 
-Each agent inhabits a **64-dimensional complex Hilbert space** $H = C^{64}$ partitioned into two bands:
+Each agent inhabits a **64-dimensional complex Hilbert space** $\mathcal{H} = \mathbb{C}^{64}$ partitioned into two bands:
 
-$$H = H_{task} \oplus H_{meta}, \quad \dim H_{task} = 24,\quad \dim H_{meta} = 40$$
+$$\mathcal{H} = \mathcal{H}_{task} \oplus \mathcal{H}_{meta}, \quad \dim \mathcal{H}_{task} = 24,\quad \dim \mathcal{H}_{meta} = 40$$
 
 The **soul** of each agent is an immutable frequency vector $\omega$.
 
