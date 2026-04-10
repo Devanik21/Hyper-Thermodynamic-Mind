@@ -32,9 +32,9 @@ class EvolutionEngine:
     are orchestrated from here.
     """
 
-    INITIAL_POP = 32
-    MAX_POP     = 128
-    MIN_POP     = 28
+    INITIAL_POP = 36
+    MAX_POP     = 196
+    MIN_POP     = 32
 
     def __init__(self, world_size: int = 60, seed: int = 42):
         self.world_size = world_size
