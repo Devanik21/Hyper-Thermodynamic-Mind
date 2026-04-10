@@ -139,16 +139,31 @@ class EvolutionEngine:
                 new_children.append(child)
                 self.lineage.setdefault(agent.id, []).append(child.id)
 
-        # Add newborns (respect ceiling)
+        # ── THE FIX: Thermodynamic Darwinian Replacement ──
         for child in new_children:
             if len(self.agents) < self.MAX_POP:
+                # Normal birth (World is not full)
                 self.agents[child.id]  = child
                 self.lineage[child.id] = []
                 self.total_born       += 1
                 self.generation        = max(self.generation, child.generation)
-                events.append(
-                    f"🐣 Born: {child.id} ← {child.parent_ids[0][:6]}"
-                )
+                events.append(f"🐣 Born: {child.id} ← {child.parent_ids[0][:6]}")
+            else:
+                # Equilibrium Reached: The weakest must perish to make room for the future
+                weakest_id = min(self.agents.keys(), key=lambda aid: self.agents[aid].energy)
+                weakest = self.agents[weakest_id]
+                
+                # Log the thermodynamic starvation
+                events.append(f"💀 Starved (Cap Reached): {weakest.id[:6]} (age {weakest.age})")
+                del self.agents[weakest_id]
+                self.total_died += 1
+                
+                # Insert the newborn
+                self.agents[child.id]  = child
+                self.lineage[child.id] = []
+                self.total_born       += 1
+                self.generation        = max(self.generation, child.generation)
+                events.append(f"🐣 Born (Replaced): {child.id} ← {child.parent_ids[0][:6]}")
 
         # Remove dead
         dead = [aid for aid, a in self.agents.items() if not a.alive]
