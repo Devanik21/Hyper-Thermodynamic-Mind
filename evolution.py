@@ -33,7 +33,7 @@ class EvolutionEngine:
     """
 
     INITIAL_POP = 36
-    MAX_POP     = 196
+    MAX_POP     = 156
     MIN_POP     = 32
 
     def __init__(self, world_size: int = 60, seed: int = 42):
